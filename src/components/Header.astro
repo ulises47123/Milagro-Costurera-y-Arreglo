@@ -1,6 +1,5 @@
 ---
 import { SITE_CONFIG, getWhatsAppUrl } from '../config';
-
 import Logo from './Logo.astro';
 
 const navLinks = [
@@ -14,8 +13,8 @@ const whatsappUrl = getWhatsAppUrl();
 ---
 
 <header class="sticky top-0 z-[100] w-full bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E0D8CE]/60 transition-colors shadow-xs">
-  <div class="max-w-[1200px] mx-auto px-4 lg:px-8 h-20 md:h-24 flex items-center justify-between">
-    <!-- Logotipo Oficial SVG Grande -->
+  <div class="max-w-[1200px] mx-auto px-4 lg:px-8 py-2 md:py-3 min-h-[90px] md:min-h-[110px] flex items-center justify-between gap-4">
+    <!-- Logotipo Oficial SVG Grande y Legible -->
     <Logo variant="light" size="md" />
 
     <!-- Navegación Desktop -->
@@ -23,7 +22,7 @@ const whatsappUrl = getWhatsAppUrl();
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-[#6B6560] hover:text-[#B8735A] font-medium transition-colors text-[1rem]"
+          class="text-[#6B6560] hover:text-[#B8735A] font-medium transition-colors text-[1.125rem]"
         >
           {link.label}
         </a>
@@ -33,7 +32,7 @@ const whatsappUrl = getWhatsAppUrl();
     <!-- Botón Hamburguesa Mobile -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden flex items-center justify-center w-6 h-6 text-[#2C2A28] focus-visible:outline-2 focus-visible:outline-[#B8735A]"
+      class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[#2C2A28] border border-[#E0D8CE] bg-[#F0EBE3]/60 focus-visible:outline-2 focus-visible:outline-[#B8735A] shrink-0"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Abrir menú de navegación"
@@ -50,14 +49,14 @@ const whatsappUrl = getWhatsAppUrl();
   <!-- Menú Desplegable Mobile -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden bg-[#FAF7F2] border-b border-[#E0D8CE] px-4 py-6 shadow-md transition-all"
+    class="hidden md:hidden bg-[#FAF7F2] border-b border-[#E0D8CE] px-6 py-6 shadow-md transition-all"
     aria-label="Menú móvil"
   >
     <nav class="flex flex-col gap-4">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-nav-link text-[#2C2A28] hover:text-[#B8735A] text-lg font-medium py-2 border-b border-[#E0D8CE]/40 last:border-0"
+          class="mobile-nav-link text-[#2C2A28] hover:text-[#B8735A] text-lg font-medium py-3 border-b border-[#E0D8CE]/40 last:border-0"
         >
           {link.label}
         </a>
@@ -80,7 +79,6 @@ const whatsappUrl = getWhatsAppUrl();
 </a>
 
 <script>
-  // Menú Hamburguesa Mobile
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const hamburgerIcon = document.getElementById('hamburger-icon');

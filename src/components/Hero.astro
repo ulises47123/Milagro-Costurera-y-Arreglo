@@ -1,16 +1,23 @@
 ---
 import { SITE_CONFIG, getWhatsAppUrl } from '../config';
+import Logo from './Logo.astro';
 
 const whatsappUrl = getWhatsAppUrl();
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="relative z-[2] bg-[#FAF7F2] py-12 lg:py-0 lg:min-h-[80vh] flex items-center">
+<section class="relative z-[2] bg-[#FAF7F2] py-12 lg:py-16 lg:min-h-[85vh] flex items-center">
   <div class="max-w-[1200px] w-full mx-auto px-4 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
       
       <!-- Contenido de Texto (Izquierda en desktop, abajo en mobile) -->
       <div class="order-2 lg:order-1 flex flex-col items-start justify-center">
+        
+        <!-- Logo Grande en Hero para máxima legibilidad móvil -->
+        <div class="mb-6 block">
+          <Logo variant="light" size="lg" />
+        </div>
+
         <h1 class="text-[#2C2A28] mb-6 font-bold leading-[1.2]">
           Arreglos y costura a medida
         </h1>
@@ -22,7 +29,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_UR
           target="_blank"
           rel="noopener"
           aria-label="Escribime por WhatsApp"
-          class="inline-flex items-center gap-3 px-7 py-3.5 rounded-lg bg-[#B8735A] hover:bg-[#9A5E48] text-white font-semibold text-[1.125rem] transition-colors shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2C2A28]"
+          class="inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-[#B8735A] hover:bg-[#9A5E48] text-white font-semibold text-[1.125rem] transition-colors shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2C2A28]"
         >
           <svg class="w-6 h-6 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.771.815 2.795.815 3.182 0 5.768-2.587 5.768-5.766.001-3.18-2.585-5.766-5.767-5.766zm3.376 8.21c-.145.407-.841.774-1.163.824-.321.05-.737.073-2.385-.609-1.986-.82-3.238-2.825-3.336-2.957-.099-.133-.801-1.066-.801-2.034 0-.968.508-1.444.689-1.642.181-.198.396-.248.528-.248.132 0 .264.002.379.008.122.006.284-.046.444.339.165.397.561 1.371.611 1.47.05.099.083.215.017.347-.066.132-.099.215-.198.33-.099.116-.208.259-.297.348-.099.099-.202.207-.087.405.115.198.513.847 1.1 1.37.756.673 1.393.882 1.591.981.198.099.314.083.43-.05.116-.132.496-.578.628-.776.132-.198.264-.165.446-.099.182.066 1.156.545 1.354.644.198.099.33.149.379.231.05.083.05.479-.095.886zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.435 5.178L2 22l4.981-1.306A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
