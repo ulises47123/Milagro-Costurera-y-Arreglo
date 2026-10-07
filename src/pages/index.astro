@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import { SITE_CONFIG } from '../config';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Servicios from '../components/Servicios.astro';
+import Sobre from '../components/Sobre.astro';
+import Galeria from '../components/Galeria.astro';
+import Info from '../components/Info.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
+import Thread from '../components/Thread.astro';
+
+const canonicalUrl = `https://${SITE_CONFIG.githubUser}.github.io/${SITE_CONFIG.repoName}/`;
+const ogImageUrl = `https://${SITE_CONFIG.githubUser}.github.io/${SITE_CONFIG.repoName}${SITE_CONFIG.seo.ogImage}`;
+---
+
+<!doctype html>
+<html lang="es-AR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primario -->
+    <title>{SITE_CONFIG.seo.title}</title>
+    <meta name="description" content={SITE_CONFIG.seo.description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={SITE_CONFIG.seo.ogTitle} />
+    <meta property="og:description" content={SITE_CONFIG.seo.ogDescription} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={SITE_CONFIG.seo.ogTitle} />
+    <meta name="twitter:description" content={SITE_CONFIG.seo.ogDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Precarga de fuentes críticas -->
+    <link
+      rel="preload"
+      href="/fonts/inter-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/caveat.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body class="bg-[#FAF7F2] text-[#2C2A28] font-sans antialiased relative min-h-screen">
+    <Header />
+    
+    <!-- Hilo decorativo continuo -->
+    <Thread />
+
+    <main id="main-content" class="relative z-[2]">
+      <Hero />
+      <Servicios />
+      <Sobre />
+      <Galeria />
+      <Info />
+      <Contacto />
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,122 @@
+---
+---
+
+<div class="pointer-events-none absolute inset-0 z-[1] w-full h-full overflow-hidden" aria-hidden="true">
+  <svg
+    id="thread-svg"
+    class="w-full h-full pointer-events-none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+  >
+    <path
+      id="thread-path"
+      fill="none"
+      stroke="#D4C5B5"
+      stroke-width="2"
+      stroke-linecap="round"
+      opacity="0.5"
+      d=""
+    />
+  </svg>
+</div>
+
+<script>
+  function initThread() {
+    const svg = document.getElementById('thread-svg') as SVGSVGElement | null;
+    const path = document.getElementById('thread-path') as SVGPathElement | null;
+    if (!svg || !path) return;
+
+    // Verificar preferencia de reducción de movimiento
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function buildPath() {
+      if (!path) return;
+      const totalHeight = document.documentElement.scrollHeight;
+      const width = window.innerWidth;
+      const centerX = width / 2;
+
+      // Generar una curva sinuosa suave desde el hero hasta el footer
+      // Cada ciclo es de ~600px de altura con amplitud de 50-75px
+      const waveLength = 600;
+      const amplitude = Math.min(Math.max(width * 0.08, 45), 80);
+      
+      let d = `M ${centerX} 350`;
+      let currentY = 350;
+      let direction = 1;
+
+      while (currentY < totalHeight) {
+        const nextY = Math.min(currentY + waveLength, totalHeight);
+        const cp1Y = currentY + waveLength * 0.35;
+        const cp2Y = currentY + waveLength * 0.65;
+        
+        const cp1X = centerX + direction * amplitude * 1.5;
+        const cp2X = centerX - direction * amplitude * 1.2;
+        const endX = centerX + (direction * (Math.random() * 20 - 10));
+
+        d += ` C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${nextY}`;
+        
+        currentY = nextY;
+        direction *= -1;
+      }
+
+      path.setAttribute('d', d);
+
+      const pathLength = path.getTotalLength();
+      path.style.strokeDasharray = `${pathLength}`;
+
+      if (prefersReducedMotion) {
+        path.style.strokeDashoffset = '0';
+      } else {
+        path.style.strokeDashoffset = `${pathLength}`;
+      }
+
+      return pathLength;
+    }
+
+    let pathLength = buildPath() || 1000;
+
+    // Actualización con scroll
+    let ticking = false;
+
+    function onScroll() {
+      if (prefersReducedMotion) return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (path) {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollHeight > 0 ? Math.min(Math.max(scrollTop / scrollHeight, 0), 1) : 1;
+            
+            // Efecto de trazado progresivo al hacer scroll
+            const drawLength = pathLength * (1 - scrollFraction);
+            path.style.strokeDashoffset = `${drawLength}`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Recalcular en resize
+    let resizeTimer: number;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        pathLength = buildPath() || 1000;
+        onScroll();
+      }, 150);
+    });
+
+    onScroll();
+  }
+
+  // Inicializar al cargar el DOM y en transiciones de Astro
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThread);
+  } else {
+    initThread();
+  }
+  document.addEventListener('astro:page-load', initThread);
+</script>

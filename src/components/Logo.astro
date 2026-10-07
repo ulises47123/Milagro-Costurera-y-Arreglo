@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+  height?: number;
+}
+
+const { variant = 'light', class: className = '', height = 48 } = Astro.props;
+
+const beigeColor = variant === 'dark' ? '#D4C5B5' : '#C2AFA0';
+const textColor = variant === 'dark' ? '#FAF7F2' : '#5C4336';
+---
+
+<a href="#" class={`inline-flex items-center gap-2 group ${className}`} aria-label="Milagro - Costura y Arreglos - Inicio">
+  <img
+    src="/images/logo.svg"
+    alt="Milagro — Costura y Arreglos"
+    class={`h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105 ${variant === 'dark' ? 'brightness-0 invert opacity-90' : ''}`}
+    height={height}
+  />
+</a>

@@ -1,0 +1,40 @@
+---
+const galleryItems = [
+  { src: "/images/galeria/01.webp", alt: "Trabajo de costura 01: Arreglo de vestido de fiesta" },
+  { src: "/images/galeria/02.webp", alt: "Trabajo de costura 02: Cambio de cierre en campera" },
+  { src: "/images/galeria/03.webp", alt: "Trabajo de costura 03: Bastilla y ajuste en pantalón jean" },
+  { src: "/images/galeria/04.webp", alt: "Trabajo de costura 04: Confección de blusa a medida" },
+  { src: "/images/galeria/05.webp", alt: "Trabajo de costura 05: Reforma y entalle de falda" },
+  { src: "/images/galeria/06.webp", alt: "Trabajo de costura 06: Reparación y cambio de forro" },
+  { src: "/images/galeria/07.webp", alt: "Trabajo de costura 07: Ajuste de tirantes y escote" },
+  { src: "/images/galeria/08.webp", alt: "Trabajo de costura 08: Cambio y refuerzo de botones" },
+  { src: "/images/galeria/09.webp", alt: "Trabajo de costura 09: Confección artesanal personalizada" },
+];
+---
+
+<section id="galeria" class="relative z-[2] bg-[#F0EBE3] py-24">
+  <div class="max-w-[1200px] mx-auto px-4 lg:px-8">
+    
+    <div class="stitch-divider" aria-hidden="true"></div>
+
+    <h2 class="text-center text-[#2C2A28] mb-16">
+      Trabajos recientes
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {galleryItems.map((item) => (
+        <div class="relative aspect-square overflow-hidden rounded-xl border border-[#E0D8CE] bg-[#E8E0D5] group">
+          <img
+            src={item.src}
+            alt={item.alt}
+            width="800"
+            height="800"
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-200 lg:group-hover:scale-[1.02]"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
