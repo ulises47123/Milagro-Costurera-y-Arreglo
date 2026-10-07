@@ -8,6 +8,7 @@ export const SITE_CONFIG = {
   whatsapp: "5493884692528", // Número real de WhatsApp
   whatsappMessage: "Hola Milagro, quiero consultar por un arreglo o trabajo de costura",
   tiktok: "ro_mily024", // Usuario real de TikTok
+  instagram: "ro_milii15", // Usuario real de Instagram
   githubUser: "ulises47123", // Usuario de GitHub
   repoName: "Milagro-Costurera-y-Arreglo", // Nombre del repositorio
 
@@ -41,4 +42,8 @@ export function getWhatsAppUrl(): string {
 
 export function getTikTokUrl(): string {
   return `https://www.tiktok.com/@${SITE_CONFIG.tiktok}`;
+}
+
+export function getInstagramUrl(): string {
+  return `https://www.instagram.com/${SITE_CONFIG.instagram}/`;
 }
