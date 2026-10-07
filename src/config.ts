@@ -5,9 +5,9 @@
 
 export const SITE_CONFIG = {
   // Placeholders y datos del cliente
-  whatsapp: "{{WHATSAPP}}", // Ejemplo: 5493881234567 (sin + ni espacios)
+  whatsapp: "5493884692528", // Número real de WhatsApp
   whatsappMessage: "Hola Milagro, quiero consultar por un arreglo",
-  tiktok: "{{TIKTOK}}", // Usuario de TikTok sin @
+  tiktok: "ro_mily024", // Usuario real de TikTok
   githubUser: "ulises47123", // Usuario de GitHub
   repoName: "Milagro-Costurera-y-Arreglo", // Nombre del repositorio
 
