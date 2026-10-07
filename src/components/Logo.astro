@@ -2,19 +2,24 @@
 interface Props {
   variant?: 'light' | 'dark';
   class?: string;
-  height?: number;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const { variant = 'light', class: className = '', height = 48 } = Astro.props;
+const { variant = 'light', class: className = '', size = 'md' } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const sizeClasses = {
+  sm: 'h-12 md:h-14',
+  md: 'h-16 md:h-20',
+  lg: 'h-20 md:h-24',
+  xl: 'h-28 md:h-36'
+};
 ---
 
 <a href="#" class={`inline-flex items-center group shrink-0 ${className}`} aria-label="Milagro - Costura y Arreglos - Inicio">
   <img
     src={`${baseUrl}images/logo.svg`}
     alt="Milagro — Costura y Arreglos"
-    class={`h-10 md:h-12 w-auto max-w-[180px] md:max-w-[220px] object-contain transition-transform duration-200 group-hover:scale-105 ${variant === 'dark' ? 'brightness-0 invert opacity-90' : ''}`}
-    width="220"
-    height={height}
+    class={`${sizeClasses[size]} w-auto object-contain transition-transform duration-200 group-hover:scale-105 ${variant === 'dark' ? 'brightness-0 invert opacity-95' : ''}`}
   />
 </a>
