@@ -6,16 +6,15 @@ interface Props {
 }
 
 const { variant = 'light', class: className = '', height = 48 } = Astro.props;
-
-const beigeColor = variant === 'dark' ? '#D4C5B5' : '#C2AFA0';
-const textColor = variant === 'dark' ? '#FAF7F2' : '#5C4336';
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<a href="#" class={`inline-flex items-center gap-2 group ${className}`} aria-label="Milagro - Costura y Arreglos - Inicio">
+<a href="#" class={`inline-flex items-center group shrink-0 ${className}`} aria-label="Milagro - Costura y Arreglos - Inicio">
   <img
-    src={`${import.meta.env.BASE_URL}images/logo.svg`}
+    src={`${baseUrl}images/logo.svg`}
     alt="Milagro — Costura y Arreglos"
-    class={`h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105 ${variant === 'dark' ? 'brightness-0 invert opacity-90' : ''}`}
+    class={`h-10 md:h-12 w-auto max-w-[180px] md:max-w-[220px] object-contain transition-transform duration-200 group-hover:scale-105 ${variant === 'dark' ? 'brightness-0 invert opacity-90' : ''}`}
+    width="220"
     height={height}
   />
 </a>
