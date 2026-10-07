@@ -20,7 +20,7 @@ const ogImageUrl = `https://${SITE_CONFIG.githubUser}.github.io/${SITE_CONFIG.re
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Primario -->
@@ -43,14 +43,14 @@ const ogImageUrl = `https://${SITE_CONFIG.githubUser}.github.io/${SITE_CONFIG.re
     <!-- Precarga de fuentes críticas -->
     <link
       rel="preload"
-      href="/fonts/inter-variable.woff2"
+      href={`${import.meta.env.BASE_URL}fonts/inter-variable.woff2`}
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/caveat.woff2"
+      href={`${import.meta.env.BASE_URL}fonts/caveat.woff2`}
       as="font"
       type="font/woff2"
       crossorigin
